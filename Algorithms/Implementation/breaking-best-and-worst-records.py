@@ -35,3 +35,27 @@ n = int(input().strip())
 s = list(map(int, input().strip().split(' ')))
 result = getRecord(s)
 print (" ".join(map(str, result)))
+
+# new method
+def breakingRecords(scores):
+    
+    l_h=[scores[0]]
+    l_l=[]
+    h_score=scores[0]
+    for i in range(1,len(scores)):
+        if scores[i] > h_score:
+            l_h.append(scores[i])
+            h_score=scores[i]
+        else:
+            l_h.append(h_score)
+        
+    for i in range(0,len(scores)):
+        if scores[i] < h_score:
+            l_l.append(scores[i])
+            h_score=scores[i]
+        else:
+            l_l.append(h_score)
+    
+    res = [*set(l_h)] #removing duplicates from l_h and l_l
+    res_l= [*set(l_l)]
+    return len(res)-1,len(res_l)-1
